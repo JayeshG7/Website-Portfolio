@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PageContainer from '@/components/PageContainer';
 
 const skills = [
-  'Java', 'Python', 'SQL', 'React', 'Tailwind', 'Google Analytics'
+  'Java', 'Python', 'SQL', 'Excel', 'Tailwind', 'Google Analytics', 
 ];
 
 export default function Resume() {

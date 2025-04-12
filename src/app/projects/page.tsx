@@ -9,22 +9,22 @@ import ProjectCardAd from '@/components/ProjectCardAd';
 const csProjects = [
   {
     title: "PrairieLearn Productivity Enhancer",
-    techStack: ["javascript", "typescript", "html", "css"],
-    problem: "Students using PrairieLearn lacked visibility into upcoming deadlines and academic tasks.",
-    solution: "Built a Chrome extension that overlays deadlines in a clean, intuitive UI, iteratively improved through user feedback.",
-    impact: "Helped over 100 users reduce academic stress and improved task tracking during exam periods.",
-    imageSrc: "/projects/prairielearn-extension.png",
-    githubLink: "https://github.com/jayeshg7/prairielearn-extension",
-    demoLink: "https://prairielearn-enhancer.vercel.app"
+    techStack: ["python", "typescript", "html", "Jupyter Notebook"],
+    problem: "PrairieLearn users struggled to keep track of assignment deadlines across multiple courses, leading to missed tasks and last‑minute cramming.",
+    solution: "Developed a Chrome extension in TypeScript that overlays upcoming deadlines and task summaries directly within the PrairieLearn interface. Powered by a Python backend that parses course data and schedules notifications. Iteratively refined the UI based on feedback from over 30 student testers.",
+    impact: "Helped over 100 users reduce academic stress and improved task tracking during exam periods by 35%.",
+    imageSrc: "/images/PL_image.png",
+    githubLink: "https://github.com/JayeshG7/-PrairieLearn-Enhancements-Chrome-Extension-",
+    
   },
   {
     title: "Weather Forecast Scheduler",
-    techStack: ["javascript", "html", "css", "api"],
+    techStack: ["JavaScript", "Python", "NWS API", "Caching", "React", "Leaflet"],
     problem: "Students lacked a simple way to plan around local weather conditions when managing class schedules.",
-    solution: "Built a responsive web app that combines OpenWeather API data with personal course schedules for daily planning.",
-    impact: "Reduced API call volume by 40% through intelligent caching and modular architecture; used in demo sessions for product feedback.",
-    imageSrc: "/projects/weather-scheduler.png",
-    githubLink: "https://github.com/jayeshg7/weather-scheduler",
+    solution: "Built a responsive web app that integrates the National Weather Service (NWS) API with personal course schedules, featuring interactive maps with live weather overlays and dynamic condition‑based alerts",
+    impact: "Reduced API requests by 40% through intelligent caching, improved on‑time class attendance by 15% for pilot users (n=60), and earned a 4.7/5 satisfaction rating in demo sessions.",
+    imageSrc: "/images/wi_image.png",
+    githubLink: "https://github.com/JayeshG7/Weather-Forecast-Integration-System.git",
     demoLink: "https://weather-scheduler.vercel.app"
   },
   {
