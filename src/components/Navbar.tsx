@@ -4,17 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Skills', href: '/skills' },
-  { name: 'Resume', href: '/resume' },
-  { name: 'Contact', href: '/contact' }
-];
+import { FiMenu, FiX, FiMail } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -78,7 +68,7 @@ export default function Navbar() {
                   bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all"
               >
                 <FiMail className="w-4 h-4" />
-                Let's Connect
+                Let&apos;s Connect
               </Link>
             </div>
 
@@ -121,7 +111,7 @@ export default function Navbar() {
                     bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Let's Connect
+                  Let&apos;s Connect
                 </Link>
               </div>
             </motion.div>

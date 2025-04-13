@@ -47,7 +47,6 @@ const categoryColors = {
 export default function BaseProjectCard({
   index,
   title,
-  description,
   tools,
   imageUrl,
   category,

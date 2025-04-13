@@ -12,6 +12,7 @@ const csProjects = [
   
   {
     title: "PrairieLearn Productivity Enhancer",
+    description: "A Chrome extension that helps students track and manage PrairieLearn assignments more effectively.",
     techStack: ["python", "typescript", "html", "Jupyter Notebook"],
     problem: "PrairieLearn users struggled to keep track of assignment deadlines across multiple courses, leading to missed tasks and last‑minute cramming.",
     solution: "Developed a Chrome extension in TypeScript that overlays upcoming deadlines and task summaries directly within the PrairieLearn interface. Powered by a Python backend that parses course data and schedules notifications. Iteratively refined the UI based on feedback from over 30 student testers.",
@@ -22,6 +23,7 @@ const csProjects = [
   },
   {
     title: "Weather Forecast Scheduler",
+    description: "A responsive web app that integrates weather data with personal schedules for better planning.",
     techStack: ["JavaScript", "Python", "NWS API", "Caching", "React", "Leaflet"],
     problem: "Students lacked a simple way to plan around local weather conditions when managing class schedules.",
     solution: "Built a responsive web app that integrates the National Weather Service (NWS) API with personal course schedules, featuring interactive maps with live weather overlays and dynamic condition‑based alerts",
@@ -33,6 +35,7 @@ const csProjects = [
   },
   {
     title: "Zombie Zork: Distributed Text Adventure Game",
+    description: "A scalable, multiplayer text adventure game built with a distributed architecture.",
     techStack: ["Python", "aiohttp", "REST APIs", "Distributed Systems", "Game Design"],
     problem: "Traditional text-based adventure games are constrained by monolithic architectures, limiting scalability, user collaboration, and real-time responsiveness. There's a gap in the market for a distributed, multiplayer-first system that enables dynamic environments, persistent game state, and modular world expansion.",
     solution: "Designed and implemented a scalable, zombie-themed text adventure game using a hub-and-spoke distributed architecture. Key features include central hub server coordinating multiple domain servers, asynchronous communication using aiohttp for responsive gameplay, RESTful API endpoints enabling seamless player movement, dynamic item system, and persistent state management.",
@@ -48,37 +51,33 @@ const adProjects = [
   {
     name: "Amazon Echo: Value Analysis",
     context: "Digital Marketing Strategy",
-    deliverableIcon: "/icons/campaign.svg",
     objective: "How does Amazon Echo create customer value across technical, experiential, functional, and social dimensions?",
-    audience: "This analysis applies a four-part value framework—economic, functional, experiential, and social—to dissect the Echo's product strategy. Using my background in Computer Science, Data Analytics, and Advertising, I examined how features like on-device AI, voice UX, and network effects drive user adoption, retention, and ecosystem lock-in. I visualized insights with behavioral models, system architecture diagrams, and product strategy flows.",
-    insight: "Amazon Echo is a masterclass in ecosystem design. It turns a $35 voice assistant into a gateway for Amazon's broader services—Prime, Music, Shopping—through smart product architecture and behavioral engagement loops. Its real strength lies in how emotional design, habit-forming functionality, and social influence combine to create sticky, scalable value. Echo isn't just a smart speaker—it's a product designed for long-term behavioral loyalty.",
+    audience: "This analysis applies a four-part value framework—economic, functional, experiential, and social—to dissect the Echo's product strategy. Using my background in Computer Science, Data Analytics, and Advertising, I examined how features like on-device AI, voice UX, and network effects drive user adoption, retention, and ecosystem lock-in.",
+    insight: "Amazon Echo is a masterclass in ecosystem design. It turns a $35 voice assistant into a gateway for Amazon's broader services—Prime, Music, Shopping—through smart product architecture and behavioral engagement loops. Its real strength lies in how emotional design, habit-forming functionality, and social influence combine to create sticky, scalable value.",
     thumbnailSrc: "/images/echo_preview.png",
     pdfLink: "/pdf/echo.pdf",
-    tools: ["Product Strategy", "UX Analysis", "AI/Voice Interfaces", "Data Storytelling", "Ecosystem Thinking", "Canva", "Figma", "Behavioral Design"],
+    tools: ["Product Strategy", "UX Analysis", "AI/Voice Interfaces", "Data Storytelling", "Ecosystem Thinking"],
   },
   {
     name: "Red Bull: Creative Strategy Brief",
     context: "Digital Marketing Strategy",
-    deliverableIcon: "/icons/campaign.svg",
     objective: "Red Bull needed a way to deepen its relevance with Gen Z—an audience that values control, momentum, and brands that reflect their pace and mindset. While the brand already owns adrenaline and energy, the challenge was to evolve the message beyond action sports and into culture, creativity, and mental performance.",
-    audience: "This one-page brief reframed Red Bull as more than a drink—it became a mindset. Using behavioral insight and cultural tension, the strategy focused on the idea that Gen Z doesn't chase energy—they manufacture it. I positioned Red Bull as the fuel for mental edge, creative control, and performance under pressure. Tone, targeting, and messaging were built around this shift.",
-    insight: "Fuel the Mindset became the core brand promise. The idea spoke to Red Bull's original DNA while expanding its relevance into flow state energy—whether you're skating at 6 a.m. or editing at 2 a.m. Visually, the brief aligned with Red Bull's bold identity but added a layer of focus and control to match the strategy.",
+    audience: "This one-page brief reframed Red Bull as more than a drink—it became a mindset. Using behavioral insight and cultural tension, the strategy focused on the idea that Gen Z doesn't chase energy—they manufacture it.",
+    insight: "Fuel the Mindset became the core brand promise. The idea spoke to Red Bull's original DNA while expanding its relevance into flow state energy—whether you're skating at 6 a.m. or editing at 2 a.m.",
     thumbnailSrc: "/images/redbull_preview.png",
-    pdfLink: "/pdf/redbull_cb.pdf",
-    tools: ["Brand Strategy", "Consumer Insight", "Campaign Messaging", "Cultural Relevance", "Behavioral Design", "Visual Storytelling"],
+    pdfLink: "/pdf/redbull.pdf",
+    tools: ["Brand Strategy", "Consumer Insight", "Campaign Messaging", "Cultural Relevance"],
   },
   {
     name: "Hyundai Motors: College Market Insight Study",
-    context: "Digital Marketing Strategy",
-    deliverableIcon: "/icons/campaign.svg",
-    objective: "How can Hyundai better understand the needs, priorities, and perceptions of college students when it comes to car ownership and brand positioning? This research explores how Gen Z students evaluate car brands, what they value when buying a vehicle, and how Hyundai's current advertising aligns with those expectations.",
-    audience: "I designed a 20-question survey in Qualtrics targeted at college students between the ages of 18–24. The survey measured perceived importance of car ownership, purchase drivers (cost, efficiency, brand recognition), and brand sentiment toward Hyundai. It included both rating scale and multiple choice formats, as well as comparative questions about Hyundai's advertising and product quality versus key competitors like Toyota and Honda.",
-    insight: "From the 120 responses collected, 74% of students ranked cost-related concerns—especially fuel and maintenance—as their top barrier to car ownership. While Hyundai was perceived as affordable, only 31% rated its advertising as persuasive. Brand quality was most commonly seen as 'about the same' as competitors, but Hyundai's messaging was noted to lack clarity or strong emotional appeal. The data suggests a opportunity for Hyundai to sharpen its value proposition and better communicate its relevance to younger buyers.",
+    context: "Market Research & Analysis",
+    objective: "How can Hyundai better understand the needs, priorities, and perceptions of college students when it comes to car ownership and brand positioning?",
+    audience: "Designed and conducted a comprehensive 20-question survey targeting college students aged 18-24, measuring perceived importance of car ownership, purchase drivers, and brand sentiment toward Hyundai versus competitors.",
+    insight: "From 120 responses, 74% ranked cost-related concerns as their top barrier. While Hyundai was perceived as affordable, only 31% rated its advertising as persuasive, suggesting an opportunity to sharpen value proposition for younger buyers.",
     thumbnailSrc: "/images/survey_pic.png",
     pptLink: "https://illinois.qualtrics.com/jfe/form/SV_1LAIec8tHv6MDeC",
-    tools: ["Consumer Research", "Strategic Thinking", "Brand Perception Analysis", "Survey Design", "Message Testing", "Competitive Benchmarking"],
-  },
-  // Add more Ad projects...
+    tools: ["Market Research", "Survey Design", "Data Analysis", "Competitive Analysis"],
+  }
 ];
 
 const dataProjects = [

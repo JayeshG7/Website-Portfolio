@@ -3,6 +3,7 @@ import BaseProjectCard from './BaseProjectCard';
 interface ProjectCardCSProps {
   index: number;
   title: string;
+  description: string;
   problem: string;
   solution: string;
   impact: string;
@@ -17,6 +18,7 @@ export default function ProjectCardCS(props: ProjectCardCSProps) {
     <BaseProjectCard
       index={props.index}
       title={props.title}
+      description={props.description}
       tools={props.techStack}
       imageUrl={props.imageSrc || ''}
       category="cs"

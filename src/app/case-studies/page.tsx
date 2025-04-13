@@ -1,72 +1,49 @@
-"use client";
-
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import PageContainer from '@/components/PageContainer';
-import CaseStudyCard from '@/components/CaseStudyCard';
-import CaseStudyModal from '@/components/CaseStudyModal';
 import { caseStudies } from '@/data/caseStudies';
+import Link from 'next/link';
+import PageContainer from '@/components/PageContainer';
+
+export const metadata = {
+  title: 'Case Studies | Jayesh Ghosh',
+  description: 'Explore detailed case studies of my projects and their impact.',
+};
 
 export default function CaseStudies() {
-  const [selectedCase, setSelectedCase] = useState<typeof caseStudies[0] | null>(null);
-
   return (
     <PageContainer>
-      {/* Hero Section with Enhanced Typography */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative py-16 mb-12 overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#E84A27]/10 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="relative space-y-6 max-w-3xl">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-5xl md:text-6xl font-bold text-white"
-            >
-              Case Studies
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-xl md:text-2xl text-gray-300 leading-relaxed"
-            >
-              Exploring real-world business challenges through data-driven solutions and strategic implementations.
-            </motion.p>
-          </div>
-        </div>
-      </motion.div>
+      <div className="max-w-4xl mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4 text-white">Case Studies</h1>
+          <p className="text-xl text-gray-300">
+            Deep dives into selected projects and their impact.
+          </p>
+        </header>
 
-      {/* Case Studies Grid with Enhanced Layout */}
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          {caseStudies.map((caseStudy, index) => (
-            <CaseStudyCard
-              key={caseStudy.slug}
-              {...caseStudy}
-              index={index}
-              onClick={() => setSelectedCase(caseStudy)}
-            />
+        <div className="space-y-8">
+          {caseStudies.map((study) => (
+            <Link 
+              key={study.slug}
+              href={`/case-studies/${study.slug}`}
+              className="block p-6 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+            >
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white">{study.title}</h2>
+                <p className="text-gray-300">{study.metaDescription}</p>
+                <div className="flex flex-wrap gap-2">
+                  {study.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 text-sm rounded-full bg-purple-500/10 
+                        text-purple-300 border border-purple-500/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
-
-      {/* Case Study Modal */}
-      {selectedCase && (
-        <CaseStudyModal
-          caseStudy={selectedCase}
-          onClose={() => setSelectedCase(null)}
-        />
-      )}
     </PageContainer>
   );
 } 

@@ -32,7 +32,7 @@ export default function About() {
           </div>
           {/* Journey Text */}
           <p className="text-lg leading-relaxed text-gray-200 flex-1">
-            At fourteen, I launched my first website—MarineHub—a place for saltwater aquarium lovers to swap tips on raising fish and corals. It was static, simple, and full of passion. I taught myself HTML and CSS, and even added a "Contact Me" tab so fellow hobbyists could reach out with questions. That small site taught me two big things: People connect through well-crafted experiences, and technology should always serve the user. That same energy—curiosity, clarity, and care—still drives everything I build today.
+            At fourteen, I launched my first website—MarineHub—a place for saltwater aquarium lovers to swap tips on raising fish and corals. It was static, simple, and full of passion. I taught myself HTML and CSS, and even added a &ldquo;Contact Me&rdquo; tab so fellow hobbyists could reach out with questions. That small site taught me two big things: People connect through well-crafted experiences, and technology should always serve the user. That same energy—curiosity, clarity, and care—still drives everything I build today.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function About() {
                 <p className="text-gray-300">BS Computer Science & Advertising • May 2026</p>
                 <ul className="mt-2 space-y-2 text-gray-200">
                   <li>• GPA: 3.9/4.0</li>
-                  <li>• Dean's List x 3</li>
+                  <li>• Dean&apos;s List x 3</li>
                   <li>• Key Courses: Data Structures, Algorithms, Systems Programming, Brand Strategy, Consumer Insight</li>
                   <li>• Organizations: Association for Computing Machinery (ACM), Phi Eta Sigma</li>
                 </ul>
@@ -78,10 +78,10 @@ export default function About() {
         <section className="py-12">
           <div className="flex flex-wrap justify-center gap-8">
             {[
-              { icon: <CodeIcon />, label: "Product Management" },
-              { icon: <UserIcon />, label: "Cross-Functional Collaboration" },
-              { icon: <MarketingIcon />, label: "Digital Marketing" },
-              { icon: <DataIcon />, label: "Data Analytics" }
+              { icon: <CodeIcon />, label: 'Product Management' },
+              { icon: <UserIcon />, label: 'Cross-Functional Collaboration' },
+              { icon: <MarketingIcon />, label: 'Digital Marketing' },
+              { icon: <DataIcon />, label: 'Data Analytics' }
             ].map((strength, index) => (
               <div key={index} className="flex flex-col items-center space-y-2">
                 <div className="text-blue-400">{strength.icon}</div>
@@ -94,7 +94,7 @@ export default function About() {
         {/* Why Me? */}
         <section className="py-12">
           <blockquote className="max-w-xl mx-auto text-center italic text-lg text-gray-300">
-          "I bridge the gap between technical depth and marketing instinct—turning raw data into insights, and insights into products that people love to use."
+            &ldquo;I&apos;m passionate about&rdquo;
           </blockquote>
         </section>
 

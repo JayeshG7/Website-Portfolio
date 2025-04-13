@@ -1,9 +1,16 @@
+'use client';
+
 import Link from "next/link";
-import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8"
+    >
       <div className="text-center space-y-6">
         {/* Profile Image */}
         {/* <div>
@@ -38,6 +45,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
