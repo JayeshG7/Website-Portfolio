@@ -22,7 +22,7 @@ export default function About() {
           {/* Profile Photo */}
           <div className="flex-shrink-0">
             <Image
-              src="/images/web_profile.png"
+              src="/images/profile.png"
               alt="Jayesh Ghosh"
               width={128}
               height={128}
