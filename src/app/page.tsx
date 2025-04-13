@@ -28,7 +28,7 @@ export default function Home() {
           Hi, I&apos;m <span className="text-blue-400">Jayesh Ghosh</span>
         </h1>
         <p className="text-xl sm:text-2xl text-gray-200 max-w-2xl mx-auto">
-          Computer Science and Advertising student building smart, scalable products backed by data and driven by users.
+          Computer Science and Advertising student at UIUC, building smart, scalable products backed by data and driven by users.
         </p>
         <div className="flex gap-4 justify-center">
           <Link 
