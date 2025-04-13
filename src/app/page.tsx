@@ -35,13 +35,13 @@ export default function Home() {
             href="/projects/" 
             className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
-            View Projects
+            My Projects
           </Link>
           <Link 
             href="/case-studies/" 
             className="px-8 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition"
           >
-            View Case Studies
+            My Case Studies
           </Link>
         </div>
       </div>

@@ -30,6 +30,7 @@ export default function RootLayout({
             }}
           >
           </div>
+          
 
           {/* Content container */}
           <div className="relative z-10">
