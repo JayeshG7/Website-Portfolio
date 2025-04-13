@@ -38,10 +38,10 @@ export default function Home() {
             View Projects
           </Link>
           <Link 
-            href="/contact/" 
+            href="/case-studies/" 
             className="px-8 py-3 border border-white text-white rounded-lg hover:bg-white/10 transition"
           >
-            Contact Me
+            View Case Studies
           </Link>
         </div>
       </div>
