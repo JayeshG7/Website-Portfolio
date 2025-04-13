@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FiBookOpen } from 'react-icons/fi';
 
 type MenuItem = {
   title: string;
   path: string;
   children?: { title: string; path: string }[];
+  icon?: React.ComponentType<{ className?: string }>;
 };
 
 const menuItems: MenuItem[] = [
@@ -18,13 +20,13 @@ const menuItems: MenuItem[] = [
     path: '/projects',
     children: [
       { title: 'All Projects', path: '/projects' },
-      { title: 'Featured', path: '/projects/featured' },
     ]
   },
   { 
     title: 'Case Studies', 
     path: '/case-studies',
-    children: []
+    children: [],
+    icon: FiBookOpen
   },
   { title: 'Skills', path: '/skills' },
   { title: 'Resume', path: '/resume' },

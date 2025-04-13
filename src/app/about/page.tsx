@@ -67,6 +67,7 @@ export default function About() {
                   <li>• GPA: 3.9/4.0</li>
                   <li>• Dean's List x 3</li>
                   <li>• Key Courses: Data Structures, Algorithms, Systems Programming, Brand Strategy, Consumer Insight</li>
+                  <li>• Organizations: Association for Computing Machinery (ACM), Phi Eta Sigma</li>
                 </ul>
               </div>
             </div>

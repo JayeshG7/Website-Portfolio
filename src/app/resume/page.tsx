@@ -34,7 +34,7 @@ export default function Resume() {
             {/* Download Button and LinkedIn Link */}
             <div className="flex items-center flex-wrap gap-4 mb-4">
               <Link
-                href="/resume.pdf"
+                href="/pdf/web_resume.pdf"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 download
                 title="Download Resume PDF"
@@ -83,14 +83,14 @@ export default function Resume() {
             <div className="relative border border-gray-700 rounded-lg overflow-hidden shadow-lg bg-white/5">
               {/* PDF Preview */}
               <iframe
-                src="/resume.pdf"
+                src="/pdf/web_resume.pdf"
                 className="w-full h-[600px]"
                 title="Resume PDF Preview"
               />
 
               {/* Open in New Tab Button */}
               <Link
-                href="/resume.pdf"
+                href="/pdf/web_resume.pdf"
                 className="absolute top-4 right-4 inline-flex items-center px-4 py-2 bg-gray-900/80 text-white text-sm rounded-md hover:bg-gray-900 transition-colors backdrop-blur-sm"
                 target="_blank"
                 rel="noopener noreferrer"
