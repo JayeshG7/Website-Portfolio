@@ -94,7 +94,7 @@ export default function About() {
         {/* Why Me? */}
         <section className="py-12">
           <blockquote className="max-w-xl mx-auto text-center italic text-lg text-gray-300">
-            &ldquo;I&apos;m passionate about&rdquo;
+            &ldquo;I&apos;m passionate about turning user insights into meaningful products through strategy, analytics, and cross-functional collaboration. &rdquo;
           </blockquote>
         </section>
 

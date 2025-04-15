@@ -118,7 +118,7 @@ const dataProjects = [
   {
     title: "Movie Analytics Dashboard: Budget, Revenue, and Ratings from IMDb",    
     businessQuestion: "What drives a movie's success—budget, genre, cast, or something else entirely? This project investigates the financial and critical performance of films using IMDb data. Key questions include: How does budget correlate with gross revenue? Which genres earn more on average? How do IMDb scores distribute across the dataset? And how can we use interactivity to make this exploration dynamic for different filters like language and release year?",
-    methodology: "The dataset (cleaned in Excel) was imported into Power BI (Web), where custom visualizations were created to explore over a thousand films by budget, revenue, IMDb rating, and genre. The dashboard includes a scatter plot, histogram, bar chart, and slicers to let users segment by genre, release year, and language. Visual elements were formatted for clarity, interactivity, and insight.",
+    methodology: "The project began with SQL-based data processing to clean and structure the raw IMDb dataset. Using SQL queries, I normalized the data, handled missing values, and created optimized views for analysis. The processed dataset was then imported into Power BI (Web), where custom visualizations were created to explore over a thousand films by budget, revenue, IMDb rating, and genre. The dashboard includes a scatter plot, histogram, bar chart, and slicers to let users segment by genre, release year, and language. Visual elements were formatted for clarity, interactivity, and insight.",
     keyFindings: [
       "Most films fall between IMDb scores of 5 and 7, with a clear bell curve around the 6–6.5 range.",
       "Family and Musical films consistently show the highest average gross revenue, even if they don't dominate in number.",
@@ -128,7 +128,7 @@ const dataProjects = [
     ],
     visualSrc: "/images/imdb_image.png",
     reportLink: "/pdf/imdb.pdf",
-    tools: ["Data Visualization", "Power BI", "Exploratory Analysis", "Dashboard Design", "Data Wrangling", "Entertainment Analytics"],
+    tools: ["SQL", "Data Visualization", "Power BI", "Exploratory Analysis", "Dashboard Design", "Data Wrangling", "Entertainment Analytics"],
   },
   // Add more data projects...
 ];
