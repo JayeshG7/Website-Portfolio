@@ -65,7 +65,7 @@ const adProjects = [
     audience: "This one-page brief reframed Red Bull as more than a drink—it became a mindset. Using behavioral insight and cultural tension, the strategy focused on the idea that Gen Z doesn't chase energy—they manufacture it.",
     insight: "Fuel the Mindset became the core brand promise. The idea spoke to Red Bull's original DNA while expanding its relevance into flow state energy—whether you're skating at 6 a.m. or editing at 2 a.m.",
     thumbnailSrc: "/images/redbull_preview.png",
-    pdfLink: "/pdf/redbull.pdf",
+    pdfLink: "/pdf/redbull_cb.pdf",
     tools: ["Brand Strategy", "Consumer Insight", "Campaign Messaging", "Cultural Relevance"],
   },
   {
