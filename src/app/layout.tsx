@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jayeshghosh.com'),
-  title: "Jayesh Ghosh | Computer Science & Marketing Analytics",
+  title: "Jayesh Ghosh | Computer Science & Advertising",
   description: "Portfolio of Jayesh Ghosh - Computer Science student at UIUC with expertise in full-stack development, data analytics, and marketing strategy. Explore projects in software engineering, data visualization, and strategic marketing.",
   keywords: ["Jayesh Ghosh", "UIUC", "Computer Science", "Data Analytics", "Marketing Strategy", "Full Stack Developer", "Portfolio"],
   authors: [{ name: "Jayesh Ghosh" }],
