@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import VisitorCounter from '@/components/VisitorCounter';
 
 export default function Home() {
   return (
@@ -45,6 +46,14 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="absolute bottom-16 text-center w-full"
+      >
+        <VisitorCounter />
+      </motion.div>
     </motion.section>
   );
 }
