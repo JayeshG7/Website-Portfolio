@@ -6,24 +6,26 @@ import { FiBarChart2 } from 'react-icons/fi';
 
 export default function VisitorCounter() {
   const [visitors, setVisitors] = useState({ unique: 0, total: 0 });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // This is a placeholder for actual analytics data
-    // In production, you would fetch this from your analytics API
     const fetchVisitors = async () => {
       try {
-        // For Vercel Analytics
         const response = await fetch('/api/visitors');
+        if (!response.ok) {
+          throw new Error('Failed to fetch visitor data');
+        }
         const data = await response.json();
-        // Adding offset to the numbers
         setVisitors({
-          unique: data.unique + 100,
-          total: data.total + 150,
+          unique: data.unique + 832,  // Adding static offset for unique visitors
+          total: data.total + 1256,   // Adding static offset for total visits
         });
       } catch (error) {
         console.error('Error fetching visitor data:', error);
         // Set default values with offset if fetch fails
-        setVisitors({ unique: 100, total: 150 });
+        setVisitors({ unique: 832, total: 1256 });
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -41,7 +43,11 @@ export default function VisitorCounter() {
           Analytics Dashboard
         </p>
         <p className="text-sm text-gray-300">
-          {visitors.unique.toLocaleString()} unique visitors • {visitors.total.toLocaleString()} total visits
+          {isLoading ? (
+            'Loading...'
+          ) : (
+            `${visitors.unique.toLocaleString()} unique visitors • ${visitors.total.toLocaleString()} total visits`
+          )}
         </p>
       </div>
     </motion.div>
