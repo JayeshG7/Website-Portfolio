@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-site-verification", // Add your Google Search Console verification code
+    google: "XqIsccbge4RE6LTRPYoIuRJnS1miW_PbyAk9-OlDWbg",
   },
   // You can safely remove the twitter metadata if you prefer
   // LinkedIn doesn't use its own metadata format - it uses OpenGraph
