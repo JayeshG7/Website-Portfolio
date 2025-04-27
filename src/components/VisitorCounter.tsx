@@ -5,25 +5,18 @@ import { motion } from 'framer-motion';
 import { FiBarChart2 } from 'react-icons/fi';
 
 export default function VisitorCounter() {
-  const [visitors, setVisitors] = useState({ unique: 0, total: 0 });
+  const [visitors, setVisitors] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchVisitors = async () => {
       try {
-        const response = await fetch('/api/visitors');
-        if (!response.ok) {
-          throw new Error('Failed to fetch visitor data');
-        }
-        const data = await response.json();
-        setVisitors({
-          unique: data.unique + 832,  // Adding static offset for unique visitors
-          total: data.total + 1256,   // Adding static offset for total visits
-        });
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setVisitors(832);
       } catch (error) {
         console.error('Error fetching visitor data:', error);
-        // Set default values with offset if fetch fails
-        setVisitors({ unique: 832, total: 1256 });
+        setVisitors(832);
       } finally {
         setIsLoading(false);
       }
@@ -46,7 +39,7 @@ export default function VisitorCounter() {
           {isLoading ? (
             'Loading...'
           ) : (
-            `${visitors.unique.toLocaleString()} unique visitors • ${visitors.total.toLocaleString()} total visits`
+            `${visitors.toLocaleString()} unique visitors`
           )}
         </p>
       </div>

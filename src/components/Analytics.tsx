@@ -1,12 +1,10 @@
 'use client';
 
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 
 export default function Analytics() {
   return (
     <>
-      <VercelAnalytics />
       <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-Z4H722N1Y1"
