@@ -1,121 +1,155 @@
-import Link from 'next/link';
-import PageContainer from '@/components/PageContainer';
+'use client';
 
-const skills = [
-  'Java', 'Python', 'SQL', 'Excel', 'Tailwind', 'Google Analytics', 
+import dynamic from 'next/dynamic';
+import PageContainer from '@/components/PageContainer';
+import GlassCard from '@/components/ui/GlassCard';
+import GlassButton from '@/components/ui/GlassButton';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/utils/animations';
+import { FiDownload, FiLinkedin, FiExternalLink } from 'react-icons/fi';
+
+// Lazy load ConstellationBackground
+const ConstellationBackground = dynamic(() => import('@/components/ConstellationBackground'), {
+  ssr: false,
+  loading: () => null
+});
+
+const skillCategories = [
+  {
+    name: 'Technical Development',
+    icon: '💻',
+    skills: ['Java', 'Python', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'REST APIs', 'Git']
+  },
+  {
+    name: 'Data & Analytics',
+    icon: '📊',
+    skills: ['SQL', 'R', 'Excel', 'Power BI', 'Tableau', 'Google Analytics']
+  },
+  {
+    name: 'Product & Strategy',
+    icon: '🎯',
+    skills: ['A/B Testing', 'User Research', 'Agile/Scrum', 'Sprint Planning', 'Stakeholder Management']
+  },
+  {
+    name: 'Design & Marketing',
+    icon: '🎨',
+    skills: ['Figma', 'Tailwind CSS', 'SEO', 'Marketing Analytics', 'UI/UX']
+  }
 ];
 
 export default function Resume() {
   return (
-    <PageContainer>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Left Column */}
-          <div className="bg-white/10 p-6 rounded-lg shadow-md backdrop-blur-sm">
-            <h1 className="text-4xl font-bold mb-6 text-white">Resume</h1>
-            
-            <p className="text-lg mb-6 text-gray-200">
-            An analytical problem solver from a top-ranked CS program, combining technical depth with strategic thinking to deliver impactful, user-driven product solutions.
-            Currently studying Computer Science + Advertising at UIUC (GPA 3.87), I’ve built AI chatbots, browser tools, and marketing workflows that drive measurable outcomes. I thrive at the intersection of product, data, and customer insight—bringing a cross-functional mindset to every project.
-            </p>
-
-            {/* Skill Badges */}
-            <div className="flex flex-wrap mb-8">
-              {skills.map((skill) => (
-                <span 
-                  key={skill}
-                  className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full mr-2 mb-2 text-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-
-            {/* Download Button and LinkedIn Link */}
-            <div className="flex items-center flex-wrap gap-4 mb-4">
-              <Link
-                href="/pdf/web_resume.pdf"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                download
-                title="Download Resume PDF"
-              >
-                <svg 
-                  className="w-5 h-5 mr-2" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-                  />
-                </svg>
-                Download Resume
-              </Link>
-
-              <Link
-                href="https://www.linkedin.com/in/jayesh-ghosh-a7aab5336/"
-                className="inline-flex items-center text-blue-400 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="View Profile on LinkedIn"
-              >
-                <svg 
-                  className="w-5 h-5 mr-2" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                View on LinkedIn
-              </Link>
-            </div>
-
-            <p className="text-sm italic text-gray-400 mt-4">
-              Last updated: April 2025
-            </p>
-          </div>
-
-          {/* Right Column - PDF Preview */}
-          <div className="md:col-span-2">
-            <div className="relative border border-gray-700 rounded-lg overflow-hidden shadow-lg bg-white/5">
-              {/* PDF Preview */}
-              <iframe
-                src="/pdf/web_resume.pdf"
-                className="w-full h-[600px]"
-                title="Resume PDF Preview"
-              />
-
-              {/* Open in New Tab Button */}
-              <Link
-                href="/pdf/web_resume.pdf"
-                className="absolute top-4 right-4 inline-flex items-center px-4 py-2 bg-gray-900/80 text-white text-sm rounded-md hover:bg-gray-900 transition-colors backdrop-blur-sm"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open Resume in New Tab"
-              >
-                <svg 
-                  className="w-4 h-4 mr-2" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                  />
-                </svg>
-                Open in New Tab
-              </Link>
-            </div>
-          </div>
-        </div>
+    <div className="bg-black min-h-screen">
+      {/* Constellation Background */}
+      <div className="fixed inset-0 z-0">
+        <ConstellationBackground />
       </div>
-    </PageContainer>
+
+      {/* Content */}
+      <div className="relative z-10">
+        <PageContainer>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-7xl mx-auto"
+          >
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Left Column */}
+              <motion.div variants={staggerItem}>
+                <GlassCard variant="prominent" className="p-6">
+                  <h1 className="text-4xl font-bold mb-6">
+                    <span className="gradient-text">Resume</span>
+                  </h1>
+            
+                  <p className="text-lg mb-8 text-gray-200 leading-relaxed">
+                    An analytical problem solver from a top-ranked CS program, combining technical depth with strategic thinking to deliver impactful, user-driven product solutions. Currently studying Computer Science and Advertising at UIUC (GPA 3.86), I&apos;ve built AI chatbots, browser tools, and marketing workflows that drive measurable outcomes.
+                  </p>
+
+                  {/* Skills by Category */}
+                  <div className="space-y-6 mb-8">
+                    {skillCategories.map((category, idx) => (
+                      <div key={idx} className="space-y-3">
+                        <h3 className="text-sm font-semibold text-gray-400 flex items-center gap-2">
+                          <span className="text-lg">{category.icon}</span>
+                          {category.name}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {category.skills.map((skill) => (
+                            <span 
+                              key={skill}
+                              className="bg-cyan-500/10 text-cyan-400 px-3 py-1.5 rounded-full text-xs border border-cyan-500/20 hover:border-cyan-400/40 hover:bg-cyan-500/15 transition-all"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Download Button and LinkedIn Link */}
+                  <div className="flex flex-col gap-3 mb-4">
+                    <GlassButton
+                      href="/pdf/web_resume.pdf"
+                      variant="primary"
+                      neonColor="cyan"
+                      icon={<FiDownload className="w-4 h-4" />}
+                      iconPosition="left"
+                      external
+                      className="w-full justify-center"
+                    >
+                      Download Resume
+                    </GlassButton>
+
+                    <GlassButton
+                      href="https://www.linkedin.com/in/jayesh-ghosh-a7aab5336/"
+                      variant="secondary"
+                      icon={<FiLinkedin className="w-4 h-4" />}
+                      iconPosition="left"
+                      external
+                      className="w-full justify-center"
+                    >
+                      View on LinkedIn
+                    </GlassButton>
+                  </div>
+
+                  <p className="text-sm italic text-gray-400 mt-4">
+                    Last updated: October 2025
+                  </p>
+                </GlassCard>
+              </motion.div>
+
+              {/* Right Column - PDF Preview */}
+              <motion.div variants={staggerItem} className="md:col-span-2">
+                <GlassCard variant="prominent" className="relative p-0 overflow-hidden">
+                  {/* PDF Preview */}
+                  <iframe
+                    src="/pdf/web_resume.pdf"
+                    className="w-full h-[600px]"
+                    title="Resume PDF Preview"
+                  />
+
+                  {/* Open in New Tab Button */}
+                  <div className="absolute top-4 right-4">
+                    <GlassButton
+                      href="/pdf/web_resume.pdf"
+                      variant="secondary"
+                      icon={<FiExternalLink className="w-4 h-4" />}
+                      iconPosition="right"
+                      external
+                      className="text-sm"
+                    >
+                      Open in New Tab
+                    </GlassButton>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            </div>
+          </motion.div>
+        </PageContainer>
+      </div>
+    </div>
   );
 }
 

@@ -61,19 +61,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Analytics />
-        <div className="min-h-screen bg-[#0F0F0F] relative">
-          {/* Background image and gradient overlay */}
-          <div 
-            className="fixed inset-0 bg-cover bg-center z-0"
-            style={{ 
-              backgroundImage: 'url("/images/bg_image.png")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
-          </div>
-          
+        <div className="min-h-screen bg-black relative">
           {/* Content container */}
           <div className="relative z-10">
             <Navbar />

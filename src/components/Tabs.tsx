@@ -1,3 +1,7 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 interface TabsProps {
   tabs: string[];
   activeTab: string;
@@ -5,48 +9,37 @@ interface TabsProps {
 }
 
 export default function Tabs({ tabs, activeTab, onChange }: TabsProps) {
-  const getTabColor = (tab: string) => {
-    switch (tab) {
-      case "CS Projects":
-        return "bg-blue-600 text-white";
-      case "Data Analytics":
-        return "bg-purple-600 text-white";
-      case "Advertising Projects":
-        return "bg-[#E84A27] text-white";
-      default:
-        return "bg-gray-800 text-gray-400";
-    }
-  };
-
-  const getHoverColor = (tab: string) => {
-    switch (tab) {
-      case "CS Projects":
-        return "hover:bg-blue-700";
-      case "Data Analytics":
-        return "hover:bg-purple-700";
-      case "Advertising Projects":
-        return "hover:bg-[#E84A27]/90";
-      default:
-        return "hover:bg-gray-700";
+  const getTabStyles = (tab: string, isActive: boolean) => {
+    const baseStyles = 'rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-all duration-300';
+    
+    if (isActive) {
+      switch (tab) {
+        case "CS Projects":
+          return `${baseStyles} glass-prominent text-white border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)]`;
+        case "Data Analytics":
+          return `${baseStyles} glass-prominent text-white border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]`;
+        case "Advertising Projects":
+          return `${baseStyles} glass-prominent text-white border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)]`;
+        default:
+          return `${baseStyles} glass text-gray-300 border border-white/20`;
+      }
+    } else {
+      return `${baseStyles} glass-subtle text-gray-400 border border-white/10 hover:border-white/30 hover:text-gray-200 hover:scale-[1.02]`;
     }
   };
 
   return (
     <div className="flex flex-wrap justify-center gap-4 mb-8">
       {tabs.map((tab) => (
-        <button
+        <motion.button
           key={tab}
           onClick={() => onChange(tab)}
-          className={`
-            rounded-full px-6 py-2 text-sm font-medium tracking-wide transition-all
-            ${activeTab === tab 
-              ? getTabColor(tab)
-              : `bg-gray-800 text-gray-400 ${getHoverColor(tab)} hover:text-gray-200`
-            }
-          `}
+          className={getTabStyles(tab, activeTab === tab)}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           {tab}
-        </button>
+        </motion.button>
       ))}
     </div>
   );

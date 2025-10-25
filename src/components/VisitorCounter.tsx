@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiBarChart2 } from 'react-icons/fi';
+import GlassCard from './ui/GlassCard';
 
 export default function VisitorCounter() {
   const [visitors, setVisitors] = useState(0);
@@ -26,23 +27,44 @@ export default function VisitorCounter() {
   }, []);
 
   return (
-    <motion.div 
-      className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 backdrop-blur-sm rounded-lg border border-blue-500/20"
-      whileHover={{ scale: 1.02 }}
+    <GlassCard
+      variant="prominent"
+      hover={true}
+      neonBorder="cyan"
+      className="inline-flex items-center gap-3 px-6 py-3"
+      whileHover={{ scale: 1.05 }}
     >
-      <FiBarChart2 className="text-blue-400 text-xl" />
-      <div className="text-center">
-        <p className="text-blue-400 font-semibold">
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 5, -5, 0]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="p-2 bg-cyan-500/20 rounded-lg"
+      >
+        <FiBarChart2 className="text-cyan-400 text-xl" />
+      </motion.div>
+      <div>
+        <p className="text-xs text-gray-400 uppercase tracking-wider font-medium">
           Analytics Dashboard
         </p>
-        <p className="text-sm text-gray-300">
+        <p className="text-base font-bold text-cyan-400">
           {isLoading ? (
-            'Loading...'
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              Loading...
+            </motion.span>
           ) : (
             `${visitors.toLocaleString()} unique visitors`
           )}
         </p>
       </div>
-    </motion.div>
+    </GlassCard>
   );
 } 

@@ -1,33 +1,80 @@
 "use client";
 
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import PageContainer from '@/components/PageContainer';
-import Tabs from '@/components/Tabs';
 import ProjectCardCS from '@/components/ProjectCardCS';
 import ProjectCardAd from '@/components/ProjectCardAd';
 import DataAnalyticsCard from '@/components/DataAnalyticsCard';
+import FeaturedProjectCard from '@/components/FeaturedProjectCard';
 import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem } from '@/utils/animations';
+import { FiCode, FiBarChart2, FiTrendingUp, FiSmartphone } from 'react-icons/fi';
+
+// Lazy load ConstellationBackground
+const ConstellationBackground = dynamic(() => import('@/components/ConstellationBackground'), {
+  ssr: false,
+  loading: () => null
+});
+
+// Featured project data (RecycleLens - iOS + iSEE partnership)
+const featuredProject = {
+  title: "RecycleLens",
+  category: "Sustainability / iOS Development",
+  description: "iOS app solving campus recycling contamination by fixing the real problem: students lack time at disposal, not environmental awareness.",
+  problem: "Existing apps force single-item scans with page navigation between each result. That fails when you're tossing multiple items mid-commute - no one scans twice. Result: 25% of recyclables hit landfills, contamination ruins entire bins.",
+  solution: "Built native iOS app with Google's Gemini Vision API. Key decision: persistent camera with scan overlays - rapid sequential scanning without navigation. Instagram adoption strategy targeting sophomores. Survey validation: 60% usage intent.",
+  impact: "30+ student prototype tests proved the insight: 78% found it intuitive mid-disposal. Partnered with UIUC Institute for Sustainability, Energy, and Environment (iSEE).",
+  metrics: {
+    primary: "78%",
+    primaryLabel: "Intuitive Rating",
+    secondary: "iSEE",
+    secondaryLabel: "UIUC Partnership",
+  },
+  videoSrc: "/videos/recyclelens_demo.mp4", // Add your video here - falls back to image if not present
+  imageSrc: "/images/recyclelens_preview.png", // Fallback image
+  tools: ["Swift", "SwiftUI", "Gemini Vision API", "Python", "Instagram Marketing"],
+  githubLink: "https://github.com/JayeshG7/recyclelens", // Update with your actual repo link
+  pdfLink: "/pdf/recyclelens_presentation.pdf", // Update with your actual presentation link
+};
+
+// Second featured project (FantaFlow - Brand Repositioning)
+const fantaFlowProject = {
+  title: "FantaFlow",
+  category: "Marketing Research / Consumer Insights / Campaign Strategy",
+  description: "Gen-Z brand repositioning using mixed-methods research and celebrity partnerships to transform Fanta from overlooked soda to nostalgic indulgence for style-conscious students.",
+  problem: "Fanta showed zero campus purchases in retail while energy drinks dominated. Research revealed the identity crisis: 25% of frequent drinkers claimed health-conscious attitudes despite consuming 5+ servings weekly. Brand needed clear positioning to compete in mobile-first, trend-driven student environments.",
+  solution: "Conducted naturalistic observation across three campus locations and analyzed 247K+ MRI Simmons consumer attitudes. Discovered Fanta captured 33% market share at fountain stations where accessibility was optimized - revealing impulse-purchase potential. Identified 13% of consumers (32.5M weighted) as indulgence-oriented 'treaters' indexing 151 for guilt-free enjoyment. Developed 'A Taste of Nostalgic Fun' campaign featuring Sabrina Carpenter partnership, sensory orange marketing, and vintage-meets-fresh aesthetics targeting busy, style-conscious Gen-Z students.",
+  impact: "Campaign strategy validated through student surveys showing 60% usage intent. Research established fountain-focused distribution as optimal channel for casual, on-the-go consumption among phone-engaged students. Successfully triangulated observational findings, secondary research, and crosstab analysis to reposition Fanta as nostalgia-driven treat rather than health beverage.",
+  metrics: {
+    primary: "60%",
+    primaryLabel: "Usage Intent",
+    secondary: "247K+",
+    secondaryLabel: "Attitudes Analyzed",
+  },
+  imageSrc: "/images/fantaimage.png", // Add your Fanta campaign image here
+  tools: ["MRI Simmons Research", "Naturalistic Observation", "Instagram Marketing", "Celebrity Partnerships", "Brand Repositioning"],
+  pdfLink: "/pdf/fantaproject.pdf",
+};
 
 const csProjects = [
-  
   {
     title: "PrairieLearn Productivity Enhancer",
-    description: "A Chrome extension that helps students track and manage PrairieLearn assignments more effectively.",
-    techStack: ["python", "typescript", "html", "Jupyter Notebook"],
-    problem: "PrairieLearn users struggled to keep track of assignment deadlines across multiple courses, leading to missed tasks and last‑minute cramming.",
-    solution: "Developed a Chrome extension in TypeScript that overlays upcoming deadlines and task summaries directly within the PrairieLearn interface. Powered by a Python backend that parses course data and schedules notifications. Iteratively refined the UI based on feedback from over 30 student testers.",
-    impact: "Helped over 100 users reduce academic stress and improved task tracking during exam periods by 35%.",
+    description: "Chrome extension solving assignment tracking by surfacing deadlines where students work - inside PrairieLearn, not separate apps.",
+    techStack: ["Python", "TypeScript", "HTML", "Jupyter Notebook"],
+    problem: "Students missed deadlines from context-switching: checking dates meant leaving PrairieLearn, opening calendars, returning. Friction caused cramming and late work.",
+    solution: "TypeScript extension overlays deadlines and task summaries in-app. Python backend parses courses, schedules notifications. 30+ student tests refined UI for minimal disruption.",
+    impact: "100+ users. 35% better on-time completion during exams when cognitive load peaks. Proved thesis: remove friction, improve follow-through.",
     imageSrc: "/images/PL_image.png",
     githubLink: "https://github.com/JayeshG7/-PrairieLearn-Enhancements-Chrome-Extension-",
-    tools: ["python", "typescript", "html", "Jupyter Notebook"],
+    tools: ["Python", "TypeScript", "HTML", "Chrome API"],
   },
   {
     title: "Weather Forecast Scheduler",
-    description: "A responsive web app that integrates weather data with personal schedules for better planning.",
+    description: "Web app overlaying live weather onto course schedules - solving the planning coordination problem for campus commuters.",
     techStack: ["JavaScript", "Python", "NWS API", "Caching", "React", "Leaflet"],
-    problem: "Students lacked a simple way to plan around local weather conditions when managing class schedules.",
-    solution: "Built a responsive web app that integrates the National Weather Service (NWS) API with personal course schedules, featuring interactive maps with live weather overlays and dynamic condition‑based alerts",
-    impact: "Reduced API requests by 40% through intelligent caching, improved on‑time class attendance by 15% for pilot users (n=60), and earned a 4.7/5 satisfaction rating in demo sessions.",
+    problem: "Students checking weather opened separate apps, mentally mapped conditions to class times/locations. Friction led to poor decisions - underprepared or skipped classes.",
+    solution: "NWS API data overlaid on course schedules. Leaflet maps show live weather by location with condition-based alerts (rain, snow) tied to class times. Smart caching maintains real-time accuracy, cuts API load.",
+    impact: "60-user pilot: 15% better on-time arrival, 40% fewer API requests, 4.7/5 satisfaction. Validated hypothesis: less planning friction, better attendance.",
     imageSrc: "/images/wi_image.png",
     githubLink: "https://github.com/JayeshG7/Weather-Forecast-Integration-System.git",
     demoLink: "https://weather-scheduler.vercel.app",
@@ -35,25 +82,24 @@ const csProjects = [
   },
   {
     title: "Zombie Zork: Distributed Text Adventure Game",
-    description: "A scalable, multiplayer text adventure game built with a distributed architecture.",
+    description: "Multiplayer text game proving distributed architecture enables real-time collaboration at scale without state loss.",
     techStack: ["Python", "aiohttp", "REST APIs", "Distributed Systems", "Game Design"],
-    problem: "Traditional text-based adventure games are constrained by monolithic architectures, limiting scalability, user collaboration, and real-time responsiveness. There's a gap in the market for a distributed, multiplayer-first system that enables dynamic environments, persistent game state, and modular world expansion.",
-    solution: "Designed and implemented a scalable, zombie-themed text adventure game using a hub-and-spoke distributed architecture. Key features include central hub server coordinating multiple domain servers, asynchronous communication using aiohttp for responsive gameplay, RESTful API endpoints enabling seamless player movement, dynamic item system, and persistent state management.",
-    impact: "Reduced server load by 60% through efficient inter-node caching, enabled real-time multi-user gameplay across distributed domains, achieved 100% item tracking accuracy, and built a modular system supporting future expansion.",
+    problem: "Traditional text adventures use monolithic design - adding players degrades performance, expanding worlds requires rebuilds, real-time collaboration impossible.",
+    solution: "Hub-and-spoke architecture: central hub coordinates domain servers managing discrete zones. Async aiohttp enables responsive cross-domain play, REST APIs power seamless movement, dynamic item system tracks 100% across nodes. Persistent state supports modular expansion.",
+    impact: "60% lower server load via inter-node caching. Real-time multi-user play across domains, zero state loss. Modular design ready for expansion. Proves distributed thinking beats monolithic constraints.",
     imageSrc: "/images/zork_image.png",
     githubLink: "https://github.com/jayeshg7/zombie_zork",
     tools: ["Python", "aiohttp", "REST APIs", "Distributed Systems", "Game Design"],
   },
-  // Add more CS projects...
 ];
 
 const adProjects = [
   {
     name: "Amazon Echo: Value Analysis",
     context: "Digital Marketing Strategy",
-    objective: "How does Amazon Echo create customer value across technical, experiential, functional, and social dimensions?",
-    audience: "This analysis applies a four-part value framework—economic, functional, experiential, and social—to dissect the Echo's product strategy. Using my background in Computer Science, Data Analytics, and Advertising, I examined how features like on-device AI, voice UX, and network effects drive user adoption, retention, and ecosystem lock-in.",
-    insight: "Amazon Echo is a masterclass in ecosystem design. It turns a $35 voice assistant into a gateway for Amazon's broader services—Prime, Music, Shopping—through smart product architecture and behavioral engagement loops. Its real strength lies in how emotional design, habit-forming functionality, and social influence combine to create sticky, scalable value.",
+    objective: "How does Echo create value across technical, experiential, functional, and social dimensions?",
+    audience: "Four-part framework analysis dissecting Echo's product strategy. Examined how on-device AI, voice UX, and network effects drive adoption, retention, and ecosystem lock-in using CS + Analytics + Advertising lens.",
+    insight: "Masterclass in ecosystem design: $35 voice assistant becomes gateway to Prime, Music, Shopping via smart architecture and behavioral loops. Strength: emotional design + habit-forming functionality + social influence = sticky, scalable value.",
     thumbnailSrc: "/images/echo_preview.png",
     pdfLink: "/pdf/echo.pdf",
     tools: ["Product Strategy", "UX Analysis", "AI/Voice Interfaces", "Data Storytelling", "Ecosystem Thinking"],
@@ -61,9 +107,9 @@ const adProjects = [
   {
     name: "Red Bull: Creative Strategy Brief",
     context: "Digital Marketing Strategy",
-    objective: "Red Bull needed a way to deepen its relevance with Gen Z—an audience that values control, momentum, and brands that reflect their pace and mindset. While the brand already owns adrenaline and energy, the challenge was to evolve the message beyond action sports and into culture, creativity, and mental performance.",
-    audience: "This one-page brief reframed Red Bull as more than a drink—it became a mindset. Using behavioral insight and cultural tension, the strategy focused on the idea that Gen Z doesn't chase energy—they manufacture it.",
-    insight: "Fuel the Mindset became the core brand promise. The idea spoke to Red Bull's original DNA while expanding its relevance into flow state energy—whether you're skating at 6 a.m. or editing at 2 a.m.",
+    objective: "How to deepen Gen-Z relevance for a brand owning adrenaline but needing evolution beyond action sports into culture and mental performance?",
+    audience: "One-page brief reframing Red Bull as mindset, not drink. Used behavioral insight and cultural tension: Gen-Z doesn't chase energy - they manufacture it.",
+    insight: "'Fuel the Mindset' became core promise. Honored original DNA while expanding to flow-state energy - whether skating at 6 a.m. or editing at 2 a.m. Positioned for momentum and control Gen-Z values.",
     thumbnailSrc: "/images/redbull_preview.png",
     pdfLink: "/pdf/Redbull_cb.pdf",
     tools: ["Brand Strategy", "Consumer Insight", "Campaign Messaging", "Cultural Relevance"],
@@ -71,9 +117,9 @@ const adProjects = [
   {
     name: "Hyundai Motors: College Market Insight Study",
     context: "Market Research & Analysis",
-    objective: "How can Hyundai better understand the needs, priorities, and perceptions of college students when it comes to car ownership and brand positioning?",
-    audience: "Designed and conducted a comprehensive 20-question survey targeting college students aged 18-24, measuring perceived importance of car ownership, purchase drivers, and brand sentiment toward Hyundai versus competitors.",
-    insight: "From 120 responses, 74% ranked cost-related concerns as their top barrier. While Hyundai was perceived as affordable, only 31% rated its advertising as persuasive, suggesting an opportunity to sharpen value proposition for younger buyers.",
+    objective: "What drives college student (18-24) needs, priorities, and perceptions around car ownership and Hyundai brand positioning?",
+    audience: "20-question survey measuring ownership importance, purchase drivers, brand sentiment versus competitors.",
+    insight: "120 responses: 74% cited cost as top barrier. Hyundai seen as affordable, but only 31% found ads persuasive. Gap: value proposition needs sharper messaging for young buyers.",
     thumbnailSrc: "/images/survey_pic.png",
     pptLink: "https://illinois.qualtrics.com/jfe/form/SV_1LAIec8tHv6MDeC",
     tools: ["Market Research", "Survey Design", "Data Analysis", "Competitive Analysis"],
@@ -84,32 +130,27 @@ const dataProjects = [
   {
     title: "Auto Brand Preferences: Attitudes, Recall, and Purchase Intent",
     tools: ["Excel", "Quantitative Analysis", "Survey Research", "Data Visualization"],
-    businessQuestion: "What influences perople in their twenties when choosing between major car brands — and how do brand consideration, attitude, and purchase intention differ across Chevy, Ford, Toyota, and Hyundai?",
-    methodology: "Collected survey responses from 104 individuals through a structured questionnaire evaluating four car brands. The survey captured brand recall (1 = Yes, 2 = No), consideration, attitude, and purchase intention on a 7-point scale. Responses were segmented by gender and age group, and all visual analysis was conducted in Excel.",
+    businessQuestion: "What drives twentysomethings' car brand choices? How do consideration, attitude, and purchase intent differ across Chevy, Ford, Toyota, Hyundai?",
+    methodology: "104-person survey evaluating four brands. Captured recall (binary), consideration/attitude/intent (7-point scale). Segmented by gender/age, analyzed in Excel.",
     keyFindings: [
-      "Chevy leads across all metrics — perfect recall (100%), highest brand attitude (6.67), and strongest purchase intention (6.46).",
-      "Hyundai ranks high in consideration (4.33) but underperforms in purchase intention (3.28), suggesting a trust or value gap.",
-      "Ford and Toyota show moderate performance across all three metrics, indicating stable but less compelling brand positions.",
-      "22–25 year-olds dominate the dataset (46%), followed by 18–21 year-olds (34%) and 26–30 year-olds (18%), with minimal response from under-18s.",
-      "Female respondents make up 59%, adding balance and gender diversity to brand perception insights.",  
+      "Chevy dominates: 100% recall, 6.67 attitude, 6.46 intent - clear winner.",
+      "Hyundai paradox: strong consideration (4.33) but weak intent (3.28) - trust gap.",
+      "Ford and Toyota: moderate across metrics - stable but unremarkable.",
+      "Sample: 46% ages 22-25, 34% ages 18-21, 59% female.",  
     ],
     visualSrc: "/images/auto_ex.png",
     reportLink: "gen_auto.pdf",
   },
   {
     title: "A Decade of GPA Data at UIUC",
-    businessQuestion: "Grades are more than academic results—they signal academic difficulty, teaching effectiveness, and resource gaps. This project explores: Which courses and instructors at the University of Illinois (2010–2020) had the highest rates of student failure? What patterns emerge across departments and terms? Are there signs of grade inequality or opportunities for targeted academic support?",
-    methodology: "This analysis used R (tidyverse, ggplot2) to clean and explore a decade's worth of GPA data across 69,000+ courses. After filtering incomplete records, we investigated failure patterns (F grades) by subject, instructor, and term. Custom boxplots and bar charts visualized variance in grading, while descriptive statistics (mean, mode, standard deviation) profiled enrollment patterns and outlier behavior. ECON and MATH were selected for deeper instructor-level analysis due to high enrollment and notable grade dispersion.",
+    businessQuestion: "Which UIUC courses/instructors (2010-2020) had highest failure rates? What patterns signal difficulty, teaching gaps, or support needs?",
+    methodology: "R (tidyverse, ggplot2) analysis of 69K+ courses. Investigated F-grade patterns by subject, instructor, term. Boxplots/bar charts for variance, descriptive stats for enrollment patterns. Deep-dive: ECON and MATH (high enrollment, grade dispersion).",
     keyFindings: [
-      
-      "MATH and CHEM top the list of departments with the most F grades issued over 10 years, followed by ECON and CS.",
-      "Significant instructor-level variation in ECON courses suggests grading inconsistency or differing course difficulty.",
-      "Fall terms had the highest student enrollment, while Winter saw minimal participation.",
-      "The average class had 57 students, but with high variance (SD ≈ 72), indicating major differences in course sizes.",
-      "Hoffman, Ruth A was the most frequently appearing instructor across the data set.",
-      "ACCY course numbers clustered around 312, possibly denoting a central/equivalent difficulty range.",
-      "Subjects like PSYC, STAT, and CHLH also appeared in the top 10 for failure rates, raising questions of support equity.",
-      "Some outlier courses issued >30 F grades in a single term, potentially signaling misalignment between instruction and student readiness."
+      "MATH and CHEM lead F-grade counts, followed by ECON and CS.",
+      "ECON shows major instructor variance - grading inconsistency or difficulty gaps.",
+      "Fall: highest enrollment. Winter: minimal. Average class: 57 students (SD 72) - huge size variance.",
+      "PSYC, STAT, CHLH in top 10 failures - support equity questions.",
+      "Outliers: courses with 30+ F grades/term - instruction-readiness mismatch.",
     ],
     visualSrc: "/images/gpa_cover.png",
     reportLink: "/gpa_analysis.html",
@@ -117,88 +158,165 @@ const dataProjects = [
   },
   {
     title: "Movie Analytics Dashboard: Budget, Revenue, and Ratings from IMDb",    
-    businessQuestion: "What drives a movie's success—budget, genre, cast, or something else entirely? This project investigates the financial and critical performance of films using IMDb data. Key questions include: How does budget correlate with gross revenue? Which genres earn more on average? How do IMDb scores distribute across the dataset? And how can we use interactivity to make this exploration dynamic for different filters like language and release year?",
-    methodology: "The project began with SQL-based data processing to clean and structure the raw IMDb dataset. Using SQL queries, I normalized the data, handled missing values, and created optimized views for analysis. The processed dataset was then imported into Power BI (Web), where custom visualizations were created to explore over a thousand films by budget, revenue, IMDb rating, and genre. The dashboard includes a scatter plot, histogram, bar chart, and slicers to let users segment by genre, release year, and language. Visual elements were formatted for clarity, interactivity, and insight.",
+    businessQuestion: "What drives movie success - budget, genre, cast? How do budget/revenue correlate? Which genres earn most? How do scores distribute? How to make exploration interactive?",
+    methodology: "SQL cleaned/structured raw IMDb data - normalized, handled nulls, created views. Power BI visualized 1K+ films by budget, revenue, rating, genre. Scatter, histogram, bar chart, slicers for genre/year/language segmentation.",
     keyFindings: [
-      "Most films fall between IMDb scores of 5 and 7, with a clear bell curve around the 6–6.5 range.",
-      "Family and Musical films consistently show the highest average gross revenue, even if they don't dominate in number.",
-      "Budget and revenue have a positive correlation, but several low-budget titles significantly outperformed expectations.",
-      "Language and genre filters reveal significant variability in revenue and rating patterns across different segments.",
-      "Interactive filters allow users to dynamically explore niche trends, e.g., the success of animation in specific decades or language-specific performance.",
+      "Scores: 5-7 bell curve, peak 6-6.5.",
+      "Family and Musical: highest avg revenue, not volume.",
+      "Budget-revenue correlation positive, but low-budget outliers significantly outperformed.",
+      "Language/genre filters show major variability in revenue/rating patterns.",
+      "Interactive slicers enable niche exploration (animation by decade, language-specific trends).",
     ],
     visualSrc: "/images/imdb_image.png",
     reportLink: "/pdf/imdb.pdf",
     tools: ["SQL", "Data Visualization", "Power BI", "Exploratory Analysis", "Dashboard Design", "Data Wrangling", "Entertainment Analytics"],
   },
-  // Add more data projects...
 ];
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState("CS Projects");
-  const tabs = ["CS Projects", "Data Analytics", "Advertising Projects"];
+  return (
+    <div className="bg-black min-h-screen">
+      {/* Constellation Background */}
+      <div className="fixed inset-0 z-0">
+        <ConstellationBackground />
+      </div>
 
-  const renderProjects = () => {
-    switch (activeTab) {
-      case "CS Projects":
-        return csProjects.map((project, index) => (
-          <div key={index} className="self-start h-[48rem]">
+      {/* Content */}
+      <div className="relative z-10">
+        <PageContainer>
             <motion.div
-              
-              
-            
-              className="..."
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-7xl mx-auto space-y-24"
+          >
+            {/* Header Section */}
+            <motion.div variants={staggerItem} className="text-center">
+              <h1 className="text-5xl sm:text-6xl font-bold mb-6">
+                <span className="gradient-text">Portfolio</span>
+              </h1>
+              <div className="h-1 w-24 mx-auto bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full shadow-[0_0_20px_rgba(6,182,212,0.5)] mb-6" />
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">                Work spanning <span className="text-cyan-400 font-semibold">technical development</span>, <span className="text-purple-400 font-semibold">data analytics</span>, and <span className="text-blue-400 font-semibold">strategic marketing</span> demonstrating how a UIUC CS and Advertising background ships products that solve real problems with measurable outcomes.
+              </p>
+            </motion.div>
+
+            {/* Featured Project 1: RecycleLens */}
+            <motion.section variants={staggerItem} className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="p-3 glass-prominent rounded-lg border border-cyan-500/30">
+                  <FiSmartphone className="w-6 h-6 text-cyan-400" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Featured: Campus Sustainability App</h2>
+                  <p className="text-gray-400">Computer vision iOS app reducing recycling contamination, partnered with UIUC iSEE</p>
+                </div>
+              </div>
+              <FeaturedProjectCard {...featuredProject} />
+            </motion.section>
+
+            {/* Visual Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+
+            {/* Featured Project 2: FantaFlow */}
+            <motion.section variants={staggerItem} className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="p-3 glass-prominent rounded-lg border border-purple-500/30">
+                  <FiTrendingUp className="w-6 h-6 text-purple-400" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Featured: Strategic Marketing Research</h2>
+                  <p className="text-gray-400">Gen-Z brand repositioning using mixed-methods research and celebrity partnerships</p>
+                </div>
+              </div>
+              <FeaturedProjectCard {...fantaFlowProject} />
+            </motion.section>
+
+            {/* Visual Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+
+            {/* CS Projects Section */}
+            <motion.section variants={staggerItem} className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="p-3 glass-prominent rounded-lg border border-blue-500/30">
+                  <FiCode className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Computer Science Projects</h2>
+                  <p className="text-gray-400">Full-stack development, distributed systems, and technical problem-solving</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {csProjects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    variants={staggerItem}
+                    className="h-[650px]"
             >
               <ProjectCardCS {...project} index={index} />
             </motion.div>
+                ))}
+              </div>
+            </motion.section>
+
+            {/* Visual Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+
+            {/* Data Analytics Section */}
+            <motion.section variants={staggerItem} className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="p-3 glass-prominent rounded-lg border border-purple-500/30">
+                  <FiBarChart2 className="w-6 h-6 text-purple-400" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Data Analytics Projects</h2>
+                  <p className="text-gray-400">Quantitative research, visualization, and data-driven insights</p>
+                </div>
           </div>
-        ));
-      case "Data Analytics":
-        return dataProjects.map((project, index) => (
-          <div key={index} className="self-start h-[48rem]">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {dataProjects.map((project, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 100 }}
-              className="..."
+                    key={index}
+                    variants={staggerItem}
+                    className="h-[650px]"
             >
               <DataAnalyticsCard {...project} index={index} />
             </motion.div>
+                ))}
+              </div>
+            </motion.section>
+
+            {/* Visual Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+
+            {/* Advertising Projects Section */}
+            <motion.section variants={staggerItem} className="space-y-8 pb-16">
+              <div className="flex items-center gap-4">
+                <div className="p-3 glass-prominent rounded-lg border border-cyan-500/30">
+                  <FiTrendingUp className="w-6 h-6 text-cyan-400" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Strategic Marketing Projects</h2>
+                  <p className="text-gray-400">Brand strategy, consumer insight, and data-driven marketing</p>
+                </div>
           </div>
-        ));
-      case "Advertising Projects":
-        return adProjects.map((project, index) => (
-          <div key={index} className="self-start h-[48rem]">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {adProjects.map((project, index) => (
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100 }}
-              className="..."
+                    key={index}
+                    variants={staggerItem}
+                    className="h-[650px]"
             >
               <ProjectCardAd {...project} index={index} />
             </motion.div>
+                ))}
           </div>
-        ));
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <PageContainer>
-      <div className="max-w-7xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold text-white">Projects</h1>
-        
-        <Tabs 
-          tabs={tabs} 
-          activeTab={activeTab} 
-          onChange={setActiveTab} 
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
-          {renderProjects()}
-        </div>
+            </motion.section>
+          </motion.div>
+        </PageContainer>
       </div>
-    </PageContainer>
+    </div>
   );
 }
-
