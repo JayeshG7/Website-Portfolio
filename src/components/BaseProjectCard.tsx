@@ -58,10 +58,8 @@ export default function BaseProjectCard({
   category,
   links,
   problem,
-  solution,
   impact,
   businessQuestion,
-  methodology,
   keyFindings,
 }: BaseProjectCardProps) {
   const colors = categoryColors[category];

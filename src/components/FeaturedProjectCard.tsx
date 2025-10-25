@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FiGithub, FiExternalLink, FiTrendingUp, FiUsers, FiPlay, FiPause, FiVolume2, FiVolumeX, FiFileText } from 'react-icons/fi';
+import { FiGithub, FiTrendingUp, FiUsers, FiPlay, FiPause, FiVolume2, FiVolumeX, FiFileText } from 'react-icons/fi';
 import GlassButton from './ui/GlassButton';
 import { useState, useRef } from 'react';
 

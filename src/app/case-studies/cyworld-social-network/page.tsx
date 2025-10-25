@@ -5,7 +5,6 @@ import { caseStudies, getNextAndPreviousCases } from '@/data/caseStudies';
 import PageContainer from '@/components/PageContainer';
 import GlassCard from '@/components/ui/GlassCard';
 import GlassButton from '@/components/ui/GlassButton';
-import Link from 'next/link';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import dynamic from 'next/dynamic';
 
